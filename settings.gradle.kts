@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "FindJob"
 include(":app")
- 
+include(":data-vacancy")
+include(":feature-search-ui")
+include(":feature-favorite-ui")
+include(":core-ui")
+include(":core-di")

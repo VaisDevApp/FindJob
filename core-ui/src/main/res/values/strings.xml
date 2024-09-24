@@ -1,0 +1,23 @@
+<resources>
+
+    <string name="vacancy_for_you">Вакансии для вас</string>
+
+    <plurals name="lookingNumber">
+        <item quantity="zero">нет человек</item>
+        <item quantity="one">%1$d человек</item>
+        <item quantity="two">%1$d человека</item>
+        <item quantity="few">%1$d человека</item>
+        <item quantity="many">%1$d человек</item>
+        <item quantity="other">%1$d человек</item>
+    </plurals>
+
+    <plurals name="vacancy">
+        <item quantity="zero">нет вакансий</item>
+        <item quantity="one">%1$d вакансия</item>
+        <item quantity="two">%1$d вакансии</item>
+        <item quantity="few">%1$d вакансии</item>
+        <item quantity="many">%1$d вакансий</item>
+        <item quantity="other">%1$d вакансии</item>
+    </plurals>
+
+</resources>
