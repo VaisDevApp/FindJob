@@ -10,16 +10,17 @@ object SearchMapper {
     fun map(vacancyPayload: VacancyPayload): List<BaseItem> {
         val resultList = mutableListOf<BaseItem>()
         resultList.add(BaseItem.FindItemUi())
-        val offerList = vacancyPayload.offerList.map { offer ->
-            OfferItem(
-                id = offer.id,
-                title = offer.title,
-                buttonText = offer.buttonText
-            )
+        if (vacancyPayload.offerList.isNotEmpty()){
+            val offerList = vacancyPayload.offerList.map { offer ->
+                OfferItem(
+                    id = offer.id,
+                    title = offer.title,
+                    buttonText = offer.buttonText
+                )
+            }
+            resultList.add(BaseItem.OffersItemUi(offerList))
         }
-        resultList.add(BaseItem.OffersItemUi(offerList))
         resultList.add(BaseItem.HeaderUi(R.string.vacancy_for_you))
-
         val vacancyList = vacancyPayload.vacancyList
             .subList(0, 3)
             .map { vacancy ->

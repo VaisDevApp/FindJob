@@ -30,10 +30,22 @@ class OfferAdapter : ListAdapter<OfferItem, OfferAdapter.OfferViewHolder>(OfferI
         private val buttonOffer = itemView.findViewById<TextView>(R.id.button_offer)
         fun bind(offer: OfferItem) {
             when (offer.id) {
-                NEAR_VACANCIES -> idOffer.setImageResource(R.drawable.ellipse_blue)
-                LEVEL_UP_RESUME -> idOffer.setImageResource(R.drawable.small_star)
-                TEMPORARY_JOB -> idOffer.setImageResource(R.drawable.ic_list)
-                else -> idOffer.setImageResource(R.drawable.ellipse_13)
+                NEAR_VACANCIES -> {
+                    idOffer.setImageResource(R.drawable.ic_location)
+                    idOffer.setBackgroundResource(R.drawable.ellipse_blue)
+                }
+                LEVEL_UP_RESUME -> {
+                    idOffer.setImageResource(R.drawable.small_star)
+                    idOffer.setBackgroundResource(R.drawable.ellipse_13)
+                }
+                TEMPORARY_JOB -> {
+                    idOffer.setImageResource(R.drawable.ic_list)
+                    idOffer.setBackgroundResource(R.drawable.ellipse_13)
+                }
+                else -> {
+                    idOffer.setImageDrawable(null)
+                    idOffer.setBackgroundDrawable(null)
+                }
             }
             titleOffer.text = offer.title
             val needShowButton = offer.buttonText != null
