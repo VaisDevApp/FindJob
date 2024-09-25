@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorite_nav_graph"
+    app:startDestination="@id/favorite">
+
+    <fragment
+        android:id="@+id/favorite"
+        android:name="ru.vais.feature.favorite.ui.presentation.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite">
+
+        <action
+            android:id="@+id/to_vacancy_detail_from_favorite"
+            app:destination="@id/vacancy_details_for_favorite"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/vacancy_details_for_favorite"
+        android:name="ru.vais.feature.other.ui.vacancydetailfeatute.VacancyDetailFragment"
+        android:label="Vacancy detail"
+        tools:layout="@layout/fragment_vacancy_detail" />
+
+</navigation>

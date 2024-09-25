@@ -12,8 +12,42 @@ import ru.vais.feature.favorite.ui.R
 class FavoriteAdapter(private val clickListener: ClickListener) :
     ListAdapter<BaseItem, ViewHolder>(FavoriteVacancyDiffCallback()) {
 
-    //private val listItem = mutableListOf<BaseItem>()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return when (viewType) {
+            VIEW_TYPE_VACANCY -> {
+                val view =
+                    inflater.inflate(ru.vais.feature.core.ui.R.layout.item_vacancy, parent, false)
+                VacancyViewHolder(view)
+            }
+            VIEW_TYPE_HEADER -> {
+                val view = inflater.inflate(R.layout.item_count_vacancy, parent, false)
+                HeaderViewHolder(view)
+            }
+            else -> {
+                throw IllegalStateException(parent.context.getString(R.string.view_type_not_found))
+            }
+        }
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is BaseItem.VacancyUi -> VIEW_TYPE_VACANCY
+            is BaseItem.HeaderUi -> VIEW_TYPE_HEADER
+        }
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when (holder) {
+            is VacancyViewHolder -> {
+                holder.bind(getItem(position) as BaseItem.VacancyUi)
+            }
+
+            is HeaderViewHolder -> {
+                holder.bind(getItem(position) as BaseItem.HeaderUi)
+            }
+        }
+    }
     inner class VacancyViewHolder(itemView: View) : ViewHolder(itemView) {
         private val lookingNumberView =
             itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.looking_number)
@@ -52,10 +86,13 @@ class FavoriteAdapter(private val clickListener: ClickListener) :
             } else {
                 isFavoriteView.setImageResource(ru.vais.feature.core.ui.R.drawable.heart)
             }
+            itemView.setOnClickListener {
+                clickListener.onClickToDetail(vacancy)
+            }
         }
     }
 
-    class HeaderViewHolder(itemView: View) : ViewHolder(itemView) {
+    inner class HeaderViewHolder(itemView: View) : ViewHolder(itemView) {
         private val headerView = itemView.findViewById<TextView>(R.id.count_vacancy)
 
         fun bind(headerUi: BaseItem.HeaderUi) {
@@ -67,47 +104,9 @@ class FavoriteAdapter(private val clickListener: ClickListener) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return when (viewType) {
-            VIEW_TYPE_VACANCY -> {
-                val view =
-                    inflater.inflate(ru.vais.feature.core.ui.R.layout.item_vacancy, parent, false)
-                VacancyViewHolder(view)
-            }
-
-            VIEW_TYPE_HEADER -> {
-                val view = inflater.inflate(R.layout.item_count_vacancy, parent, false)
-                HeaderViewHolder(view)
-            }
-
-            else -> {
-                throw IllegalStateException(parent.context.getString(R.string.view_type_not_found))
-            }
-        }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return when (getItem(position)) {
-            is BaseItem.VacancyUi -> VIEW_TYPE_VACANCY
-            is BaseItem.HeaderUi -> VIEW_TYPE_HEADER
-        }
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        when (holder) {
-            is VacancyViewHolder -> {
-                holder.bind(getItem(position) as BaseItem.VacancyUi)
-            }
-
-            is HeaderViewHolder -> {
-                holder.bind(getItem(position) as BaseItem.HeaderUi)
-            }
-        }
-    }
-
     interface ClickListener {
         fun onClick(vacancy: BaseItem.VacancyUi)
+        fun onClickToDetail(vacancy: BaseItem.VacancyUi)
     }
 
     companion object {

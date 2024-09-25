@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".responsefeatute.ResponseFragment">
+    tools:context="ru.vais.feature.other.ui.profilefeatute.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/fragment_response"
+        android:text="@string/fragment_profile"
         android:gravity="center"/>
 
 </FrameLayout>

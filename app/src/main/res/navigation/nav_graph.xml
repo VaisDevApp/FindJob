@@ -13,25 +13,25 @@
 
     <fragment
         android:id="@+id/favorite"
-        android:name="ru.vais.feature.favorite.ui.presentation.FavoriteFragment"
+        android:name="ru.vais.feature.favorite.ui.presentation.FavoriteHostFragment"
         android:label="Favorite"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/response"
-        android:name="ru.vais.findwork.responsefeatute.ResponseFragment"
+        android:name="ru.vais.feature.other.ui.responsefeatute.ResponseFragment"
         android:label="Response"
         tools:layout="@layout/fragment_response" />
 
     <fragment
         android:id="@+id/message"
-        android:name="ru.vais.findwork.messagefeatute.MessageFragment"
+        android:name="ru.vais.feature.other.ui.messagefeatute.MessageFragment"
         android:label="Message"
         tools:layout="@layout/fragment_message" />
 
     <fragment
         android:id="@+id/profile"
-        android:name="ru.vais.findwork.profilefeatute.ProfileFragment"
+        android:name="ru.vais.feature.other.ui.profilefeatute.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 

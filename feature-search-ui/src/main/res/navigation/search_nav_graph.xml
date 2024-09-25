@@ -20,14 +20,14 @@
 
     <fragment
         android:id="@+id/vacancy_details"
-        android:name="ru.vais.findwork.vacancydetailfeatute.VacancyDetailFragment"
-        android:label="Search"
+        android:name="ru.vais.feature.other.ui.vacancydetailfeatute.VacancyDetailFragment"
+        android:label="Vacancy detail"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/search_full"
         android:name="ru.vais.feature.search.ui.presentation.full.SearchFullFragment"
-        android:label="Search"
+        android:label="Search full"
         tools:layout="@layout/fragment_search_full" >
 
         <action

@@ -9,9 +9,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import ru.vais.core.di.BaseComponentHolder
+import ru.vais.feature.favorite.ui.R
 import ru.vais.feature.favorite.ui.presentation.adapter.BaseItem
 import ru.vais.feature.favorite.ui.presentation.adapter.FavoriteAdapter
 import ru.vais.feature.favorite.ui.databinding.FragmentFavoriteBinding
@@ -55,6 +57,10 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
     }
 
     override fun onClick(vacancy: BaseItem.VacancyUi) {
-        viewModel.update(vacancy)
+        viewModel.updateFavoriteStatus(vacancy)
+    }
+
+    override fun onClickToDetail(vacancy: BaseItem.VacancyUi) {
+        findNavController().navigate(R.id.to_vacancy_detail_from_favorite)
     }
 }

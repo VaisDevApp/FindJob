@@ -25,7 +25,7 @@ class FavoriteViewModel @Inject constructor(
     private val _stateScreenFlow = MutableStateFlow<List<BaseItem>>(emptyList())
     val stateScreenFlow = _stateScreenFlow.asStateFlow()
 
-    fun update(vacancy: BaseItem.VacancyUi) {
+    fun updateFavoriteStatus(vacancy: BaseItem.VacancyUi) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 updateFavoriteVacancyUseCase.updateFavoriteVacancy(
