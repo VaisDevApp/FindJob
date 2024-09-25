@@ -15,7 +15,8 @@ object SearchMapper {
                 OfferItem(
                     id = offer.id,
                     title = offer.title,
-                    buttonText = offer.buttonText
+                    buttonText = offer.buttonText,
+                    link = offer.link
                 )
             }
             resultList.add(BaseItem.OffersItemUi(offerList))

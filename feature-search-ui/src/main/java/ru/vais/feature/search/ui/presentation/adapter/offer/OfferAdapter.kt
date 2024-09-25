@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.vais.feature.search.ui.R
 
-class OfferAdapter : ListAdapter<OfferItem, OfferAdapter.OfferViewHolder>(OfferItemDiffCallback()) {
+class OfferAdapter (private val clickListener: ClickListener) : ListAdapter<OfferItem, OfferAdapter.OfferViewHolder>(OfferItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferViewHolder {
         val inflate = LayoutInflater.from(parent.context)
@@ -34,14 +34,17 @@ class OfferAdapter : ListAdapter<OfferItem, OfferAdapter.OfferViewHolder>(OfferI
                     idOffer.setImageResource(R.drawable.ic_location)
                     idOffer.setBackgroundResource(R.drawable.ellipse_blue)
                 }
+
                 LEVEL_UP_RESUME -> {
                     idOffer.setImageResource(R.drawable.small_star)
                     idOffer.setBackgroundResource(R.drawable.ellipse_13)
                 }
+
                 TEMPORARY_JOB -> {
                     idOffer.setImageResource(R.drawable.ic_list)
                     idOffer.setBackgroundResource(R.drawable.ellipse_13)
                 }
+
                 else -> {
                     idOffer.setImageDrawable(null)
                     idOffer.setBackgroundDrawable(null)
@@ -57,7 +60,14 @@ class OfferAdapter : ListAdapter<OfferItem, OfferAdapter.OfferViewHolder>(OfferI
                 buttonOffer.isVisible = false
                 titleOffer.setLines(3)
             }
+            itemView.setOnClickListener {
+                clickListener.onClickToOffer(offer.link)
+            }
         }
+    }
+
+    interface ClickListener {
+        fun onClickToOffer(link: String)
     }
 
     companion object {

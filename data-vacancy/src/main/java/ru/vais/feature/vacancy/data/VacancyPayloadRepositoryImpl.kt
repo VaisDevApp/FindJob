@@ -111,7 +111,8 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
             id = 0,
             idFromServer = offerApi.id,
             title = offerApi.title,
-            buttonText = offerApi.button?.text
+            buttonText = offerApi.button?.text,
+            link = offerApi.link
         )
     }
 
@@ -119,7 +120,8 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
         return Offer(
             id = offerBd.idFromServer,
             title = offerBd.title,
-            buttonText = offerBd.buttonText
+            buttonText = offerBd.buttonText,
+            link = offerBd.link
         )
     }
 

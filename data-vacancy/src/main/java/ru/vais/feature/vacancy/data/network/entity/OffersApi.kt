@@ -9,5 +9,7 @@ data class OffersApi (
     @SerializedName("title")
     val title: String,
     @SerializedName("button")
-    val button: ButtonApi?
+    val button: ButtonApi?,
+    @SerializedName("link")
+    val link: String
 )

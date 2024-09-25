@@ -18,5 +18,8 @@ class OfferDb(
     val title: String,
 
     @ColumnInfo(name = "buttonText")
-    val buttonText: String?
+    val buttonText: String?,
+
+    @ColumnInfo(name = "link")
+    val link: String
 )

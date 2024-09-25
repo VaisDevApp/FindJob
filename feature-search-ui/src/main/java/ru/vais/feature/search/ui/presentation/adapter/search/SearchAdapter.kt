@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.presentation.adapter.offer.OfferAdapter
+import ru.vais.feature.search.ui.presentation.main.SearchFragment
 
 class SearchAdapter(private val clickListener: OnClickListener) :
     ListAdapter<BaseItem, ViewHolder>(BaseItemDiffCallback()) {
@@ -162,7 +163,11 @@ class SearchAdapter(private val clickListener: OnClickListener) :
 
         private val offersRecyclerView =
             itemView.findViewById<RecyclerView>(R.id.offers_recycler_view)
-        private val offerAdapter = OfferAdapter()
+        private val offerAdapter = OfferAdapter(object : OfferAdapter.ClickListener{
+            override fun onClickToOffer(link: String) {
+                clickListener.onClickToOffer(link)
+            }
+        })
 
         fun bind(offers: BaseItem.OffersItemUi) {
             offersRecyclerView.layoutManager =
@@ -187,5 +192,7 @@ class SearchAdapter(private val clickListener: OnClickListener) :
         fun onClickChangeFavorite(vacancy: BaseItem.VacancyUi)
 
         fun onClickToVacancyCard(vacancy: BaseItem.VacancyUi)
+
+        fun onClickToOffer(link:String)
     }
 }

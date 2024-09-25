@@ -1,5 +1,7 @@
 package ru.vais.feature.search.ui.presentation.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +16,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
-import ru.vais.feature.search.ui.presentation.adapter.search.SearchAdapter
 import ru.vais.core.di.BaseComponentHolder
 import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.databinding.FragmentSearchBinding
 import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
+import ru.vais.feature.search.ui.presentation.adapter.search.SearchAdapter
 
 
 class SearchFragment : Fragment() {
@@ -41,6 +43,12 @@ class SearchFragment : Fragment() {
 
         override fun onClickToVacancyCard(vacancy: BaseItem.VacancyUi) {
             findNavController().navigate(R.id.to_vacancy_detail)
+        }
+
+        override fun onClickToOffer(link: String) {
+            val uriUrl = Uri.parse(link)
+            val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
+            startActivity(launchBrowser)
         }
     })
 
