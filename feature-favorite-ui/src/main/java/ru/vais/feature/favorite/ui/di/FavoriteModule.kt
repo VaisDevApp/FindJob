@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.vais.core.di.ViewModelKey
-import ru.vais.feature.favorite.ui.FavoriteViewModel
+import ru.vais.feature.favorite.ui.presentation.FavoriteViewModel
 
 @Module
 interface FavoriteModule {

@@ -13,8 +13,6 @@ import java.text.SimpleDateFormat
 class SearchAdapter(private val clickListener: OnClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listItem = mutableListOf<BaseItem>()
-    private val dateFormatOutput = SimpleDateFormat("dd MMMM")
-    private val dateFormatInput = SimpleDateFormat("yyyy-MM-dd")
 
     class FindPanelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
@@ -74,8 +72,7 @@ class SearchAdapter(private val clickListener: OnClickListener) :
             townView.text = vacancy.town
             companyView.text = vacancy.company
             previewTextView.text = vacancy.previewText
-            val date = dateFormatInput.parse(vacancy.publishedDate)
-            publishedDateView.text = "Опубликовано ${dateFormatOutput.format(date)}"
+            publishedDateView.text = itemView.context.getString(R.string.published, vacancy.publishedDate)
             itemView.setOnClickListener {
                 clickListener.onClickToVacancyCard(vacancy)
             }

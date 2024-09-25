@@ -1,5 +1,6 @@
 package ru.vais.feature.search.ui.presentation.main.mapper
 
+import ru.vais.feature.core.ui.DateUtil
 import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.presentation.adapter.BaseItem
 import ru.vais.feature.search.ui.presentation.adapter.OfferItem
@@ -30,7 +31,7 @@ object SearchMapper {
                     town = vacancy.town,
                     company = vacancy.company,
                     previewText = vacancy.previewText,
-                    publishedDate = vacancy.publishedDate
+                    publishedDate = DateUtil.convert(vacancy.publishedDate)
                 )
             }
         resultList.addAll(vacancyList)

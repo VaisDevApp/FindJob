@@ -1,4 +1,4 @@
-package ru.vais.feature.favorite.ui
+package ru.vais.feature.favorite.ui.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,12 +12,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import ru.vais.core.di.BaseComponentHolder
+import ru.vais.feature.favorite.ui.presentation.adapter.BaseItem
+import ru.vais.feature.favorite.ui.presentation.adapter.FavoriteAdapter
 import ru.vais.feature.favorite.ui.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
 
     private val viewModelFactory = BaseComponentHolder.get().getViewModelFactory()
-    lateinit var binding: FragmentFavoriteBinding
+    private lateinit var binding: FragmentFavoriteBinding
     private val viewModel: FavoriteViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[FavoriteViewModel::class.java]
     }
@@ -26,7 +28,7 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFavoriteBinding.inflate(inflater)
         return binding.root
     }
@@ -37,17 +39,22 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
         binding.recyclerFavorite.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerFavorite.adapter = favoriteAdapter
 
+        subscribeViewModel()
+
         viewModel.loadDate()
+    }
+
+    private fun subscribeViewModel() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.flow.collect {
+                viewModel.stateScreenFlow.collect {
                     favoriteAdapter.update(it)
                 }
             }
         }
     }
 
-    override fun onClick(vacancy: BaseFavoriteItem.VacancyUi) {
+    override fun onClick(vacancy: BaseItem.VacancyUi) {
         viewModel.update(vacancy)
     }
 }

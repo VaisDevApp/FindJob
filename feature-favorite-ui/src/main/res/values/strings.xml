@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="view_type_not_found">View type not found</string>
+    <string name="publish">Опубликовано %1$s</string>
+    <string name="now_show">Сейчас просматривает %1$s</string>
+</resources>
