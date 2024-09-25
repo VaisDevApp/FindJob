@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="12dp"
+    android:paddingTop="6dp"
+    android:paddingRight="12dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/count_vacancy_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="4dp"
+        android:text="145 вакансий"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/filtr_vacancy_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_toLeftOf="@id/icon_filter"
+        android:text="По соответствию "
+        android:textColor="#2B7EFE"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/icon_filter"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4dp"
+        android:src="@drawable/ic_filter" />
+
+</RelativeLayout>

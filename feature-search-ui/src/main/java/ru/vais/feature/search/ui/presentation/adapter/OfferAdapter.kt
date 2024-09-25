@@ -1,4 +1,4 @@
-package ru.vais.feature.search.ui
+package ru.vais.feature.search.ui.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import ru.vais.feature.search.ui.R
 
 class OfferAdapter : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
 

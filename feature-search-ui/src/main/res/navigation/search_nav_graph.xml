@@ -7,13 +7,15 @@
 
     <fragment
         android:id="@+id/search"
-        android:name="ru.vais.feature.search.ui.SearchFragment"
+        android:name="ru.vais.feature.search.ui.presentation.main.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search">
-
+        <action
+            android:id="@+id/to_search_full"
+            app:destination="@id/search_full" />
         <action
             android:id="@+id/to_vacancy_detail"
-            app:destination="@id/vacancy_details" />
+            app:destination="@id/vacancy_details"/>
     </fragment>
 
     <fragment
@@ -21,5 +23,17 @@
         android:name="ru.vais.findwork.vacancydetailfeatute.VacancyDetailFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/search_full"
+        android:name="ru.vais.feature.search.ui.presentation.full.SearchFullFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search_full" >
+
+        <action
+            android:id="@+id/to_vacancy_detail"
+            app:destination="@id/vacancy_details"/>
+    </fragment>
+
 
 </navigation>

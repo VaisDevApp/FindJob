@@ -1,4 +1,4 @@
-package ru.vais.feature.search.ui
+package ru.vais.feature.search.ui.presentation.full
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,23 +14,23 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
-import layout.SearchAdapter
+import ru.vais.feature.search.ui.presentation.adapter.SearchAdapter
 import ru.vais.core.di.BaseComponentHolder
-import ru.vais.feature.search.ui.databinding.FragmentSearchBinding
+import ru.vais.feature.search.ui.R
+import ru.vais.feature.search.ui.databinding.FragmentSearchFullBinding
+import ru.vais.feature.search.ui.presentation.adapter.BaseItem
 
-
-class SearchFragment : Fragment() {
+class SearchFullFragment : Fragment() {
 
     private val viewModelFactory = BaseComponentHolder.get().getViewModelFactory()
-
     private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[SearchViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[SearchFullViewModel::class.java]
     }
 
-    lateinit var binding: FragmentSearchBinding
-    val searchAdapter = SearchAdapter(object : SearchAdapter.OnClickListener {
+    private lateinit var binding: FragmentSearchFullBinding
+    private val searchAdapter = SearchAdapter(object : SearchAdapter.OnClickListener {
         override fun onClick() {
-            viewModel.getAllVacancyInFragment()
+            //stub
         }
 
         override fun onClickChangeFavorite(vacancy: BaseItem.VacancyUi) {
@@ -45,8 +45,8 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSearchBinding.inflate(inflater)
+    ): View {
+        binding = FragmentSearchFullBinding.inflate(inflater)
         return binding.root
     }
 
@@ -55,27 +55,33 @@ class SearchFragment : Fragment() {
         binding.recyclerSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerSearch.adapter = searchAdapter
 
+        binding.icFindView.setOnClickListener { findNavController().popBackStack() }
+
+        subscribeViewModel()
+        viewModel.loadData()
+    }
+    private fun subscribeViewModel(){
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.flowStateScreen.collect {
                     when (it) {
-                        is SearchViewModel.StateScreen.Content -> {
+                        is SearchFullViewModel.StateScreen.Content -> {
                             binding.progressbar.isVisible = false
                             binding.buttonRepeatLoad.isVisible = false
                             searchAdapter.update(it.baseItemList)
                         }
 
-                        is SearchViewModel.StateScreen.Error -> {
+                        is SearchFullViewModel.StateScreen.Error -> {
                             binding.progressbar.isVisible = false
                             binding.buttonRepeatLoad.isVisible = true
                             Toast.makeText(
                                 requireContext(),
-                                "Проверьте подключение к интернету",
+                                getString(R.string.network_error),
                                 Toast.LENGTH_LONG
                             ).show()
                         }
 
-                        is SearchViewModel.StateScreen.ProgressBar -> {
+                        is SearchFullViewModel.StateScreen.Progress -> {
                             binding.progressbar.isVisible = true
                             binding.buttonRepeatLoad.isVisible = false
                         }
@@ -83,9 +89,5 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-        binding.buttonRepeatLoad.setOnClickListener {
-            viewModel.loadData()
-        }
-        viewModel.loadData()
     }
 }

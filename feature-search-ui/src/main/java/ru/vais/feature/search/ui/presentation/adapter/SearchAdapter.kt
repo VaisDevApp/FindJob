@@ -1,4 +1,4 @@
-package layout
+package ru.vais.feature.search.ui.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,44 +7,62 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.vais.feature.search.ui.BaseItem
-import ru.vais.feature.search.ui.OfferAdapter
 import ru.vais.feature.search.ui.R
 import java.text.SimpleDateFormat
 
-class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SearchAdapter(private val clickListener: OnClickListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val listItem = mutableListOf<BaseItem>()
     private val dateFormatOutput = SimpleDateFormat("dd MMMM")
     private val dateFormatInput = SimpleDateFormat("yyyy-MM-dd")
+
     class FindPanelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     inner class ButtonOnClickViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val buttonAddVacancyView = itemView.findViewById<TextView>(R.id.button_add_vacancy)
 
-        fun bind (button: BaseItem.ButtonOnClickItemUi){
+        fun bind(button: BaseItem.ButtonOnClickItemUi) {
             buttonAddVacancyView.setOnClickListener {
                 clickListener.onClick()
             }
-            buttonAddVacancyView.text = "Еще ${itemView.resources.getQuantityString(ru.vais.feature.core.ui.R.plurals.vacancy, button.countVacancy, button.countVacancy)}"
+            buttonAddVacancyView.text = itemView.context.getString(
+                R.string.still, itemView.resources.getQuantityString(
+                    ru.vais.feature.core.ui.R.plurals.vacancy,
+                    button.countVacancy,
+                    button.countVacancy
+                )
+            )
 
         }
     }
 
-
     inner class VacancyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val lookingNumberView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.looking_number)
-        private val isFavoriteView = itemView.findViewById<ImageView>(ru.vais.feature.core.ui.R.id.is_favorite)
+        private val lookingNumberView =
+            itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.looking_number)
+        private val isFavoriteView =
+            itemView.findViewById<ImageView>(ru.vais.feature.core.ui.R.id.is_favorite)
         private val titleView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.title)
         private val townView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.town)
-        private val companyView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.company)
-        private val previewTextView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.previewText)
-        private val publishedDateView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.publishedDate)
-        private val buttonOnClickView = itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.button_onclick)
+        private val companyView =
+            itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.company)
+        private val previewTextView =
+            itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.previewText)
+        private val publishedDateView =
+            itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.publishedDate)
+        private val buttonOnClickView =
+            itemView.findViewById<TextView>(ru.vais.feature.core.ui.R.id.button_onclick)
 
         fun bind(vacancy: BaseItem.VacancyUi) {
-            lookingNumberView.text = "Сейчас просматривает ${itemView.resources.getQuantityString(ru.vais.feature.core.ui.R.plurals.lookingNumber, vacancy.lookingNumber, vacancy.lookingNumber)}"
-            if (vacancy.isFavorite){
+            lookingNumberView.text = itemView.context.getString(
+                R.string.now_show,
+                itemView.resources.getQuantityString(
+                    ru.vais.feature.core.ui.R.plurals.lookingNumber,
+                    vacancy.lookingNumber,
+                    vacancy.lookingNumber
+                )
+            )
+            if (vacancy.isFavorite) {
                 isFavoriteView.setImageResource(ru.vais.feature.core.ui.R.drawable.ic_full_heart)
             } else {
                 isFavoriteView.setImageResource(ru.vais.feature.core.ui.R.drawable.heart)
@@ -71,6 +89,19 @@ class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<
         }
     }
 
+    class FavoriteHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val favoriteheaderView = itemView.findViewById<TextView>(R.id.count_vacancy_view)
+        fun bind(favoriteHeaderUi: BaseItem.FavoriteHeaderUi) {
+            favoriteheaderView.text =
+                itemView.resources.getQuantityString(
+                    ru.vais.feature.core.ui.R.plurals.vacancy,
+                    favoriteHeaderUi.titleResId,
+                    favoriteHeaderUi.titleResId
+                )
+
+        }
+    }
+
     class OffersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val offersRecyclerView =
@@ -94,7 +125,8 @@ class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<
             }
 
             VIEW_TYPE_VACANCY -> {
-                val view = inflater.inflate(ru.vais.feature.core.ui.R.layout.item_vacancy, parent, false)
+                val view =
+                    inflater.inflate(ru.vais.feature.core.ui.R.layout.item_vacancy, parent, false)
                 VacancyViewHolder(view)
             }
 
@@ -113,6 +145,11 @@ class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<
                 ButtonOnClickViewHolder(view)
             }
 
+            VIEW_TYPE_FAVORITE_HEADER -> {
+                val view = inflater.inflate(R.layout.item_favorite_header_panel, parent, false)
+                FavoriteHeaderViewHolder(view)
+            }
+
             else -> throw IllegalStateException("View type not found")
         }
     }
@@ -128,6 +165,7 @@ class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<
             is BaseItem.OffersItemUi -> VIEW_TYPE_OFFERS
             is BaseItem.ButtonOnClickItemUi -> VIEW_TYPE_BUTTON_ONCLICK
             is BaseItem.FindItemUi -> VIEW_TYPE_FIND_PANEL
+            is BaseItem.FavoriteHeaderUi -> VIEW_TYPE_FAVORITE_HEADER
         }
     }
 
@@ -141,11 +179,17 @@ class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<
             is OffersViewHolder -> {
                 holder.bind(itemSearch as BaseItem.OffersItemUi)
             }
+
             is VacancyViewHolder -> {
                 holder.bind(itemSearch as BaseItem.VacancyUi)
             }
+
             is ButtonOnClickViewHolder -> {
                 holder.bind(itemSearch as BaseItem.ButtonOnClickItemUi)
+            }
+
+            is FavoriteHeaderViewHolder -> {
+                holder.bind(itemSearch as BaseItem.FavoriteHeaderUi)
             }
         }
     }
@@ -163,8 +207,10 @@ class SearchAdapter (val clickListener: OnClickListener) : RecyclerView.Adapter<
         private const val VIEW_TYPE_OFFERS = 2
         private const val VIEW_TYPE_FIND_PANEL = 3
         private const val VIEW_TYPE_BUTTON_ONCLICK = 4
+        private const val VIEW_TYPE_FAVORITE_HEADER = 5
     }
-    interface OnClickListener{
+
+    interface OnClickListener {
         fun onClick()
 
         fun onClickChangeFavorite(vacancy: BaseItem.VacancyUi)

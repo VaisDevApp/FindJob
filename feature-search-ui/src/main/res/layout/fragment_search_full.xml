@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.full.SearchFullFragment"
+    android:paddingRight="12dp"
+    android:paddingLeft="12dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="8dp"
+    android:background="@color/black">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_from_find_left"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#313234"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/card_view_from_find_right"
+        android:layout_marginRight="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/ic_find_view"
+                android:src="@drawable/ic_back"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"/>
+
+
+            <EditText
+                android:id="@+id/edit_find_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="Должность, ключевые слова"
+                android:textColorHint="#858688"
+                android:layout_toRightOf="@id/ic_find_view"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_from_find_right"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#313234"
+        android:layout_alignParentRight="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/settings_button_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_settings"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:layout_centerInParent = "true"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_repeat_load"
+        android:text="Повторить загрузку"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:layout_centerInParent = "true"/>
+
+</RelativeLayout>

@@ -1,7 +1,7 @@
-package ru.vais.feature.search.ui
+package ru.vais.feature.search.ui.presentation.adapter
 
 sealed class BaseItem {
-   data class VacancyUi(
+    data class VacancyUi(
         val id: String,
         val lookingNumber: Int,
         var isFavorite: Boolean,
@@ -13,19 +13,9 @@ sealed class BaseItem {
     ) : BaseItem()
 
     class HeaderUi(val titleResId: Int) : BaseItem()
-
-    class OffersItemUi(
-        val offers: List<OfferItem>
-    ) : BaseItem()
-
+    class FavoriteHeaderUi(val titleResId: Int) : BaseItem()
+    class OffersItemUi(val offers: List<OfferItem>) : BaseItem()
     class FindItemUi() : BaseItem()
-
     class ButtonOnClickItemUi(val countVacancy: Int) : BaseItem()
-
 }
 
-class OfferItem(
-    val id: String?,
-    val title: String,
-    val buttonText: String?
-)
