@@ -2,8 +2,8 @@ package ru.vais.feature.search.ui.presentation.main.mapper
 
 import ru.vais.feature.core.ui.DateUtil
 import ru.vais.feature.search.ui.R
-import ru.vais.feature.search.ui.presentation.adapter.BaseItem
-import ru.vais.feature.search.ui.presentation.adapter.OfferItem
+import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
+import ru.vais.feature.search.ui.presentation.adapter.offer.OfferItem
 import ru.vais.feature.vacancy.domain.entity.VacancyPayload
 
 object SearchMapper {

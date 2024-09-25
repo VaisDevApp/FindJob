@@ -1,6 +1,6 @@
 package ru.vais.feature.search.ui.presentation.full.mapper
 
-import ru.vais.feature.search.ui.presentation.adapter.BaseItem
+import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 import ru.vais.feature.vacancy.domain.entity.VacancyPayload
 
 object SearchFullMapper {

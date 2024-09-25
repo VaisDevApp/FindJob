@@ -5,15 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import ru.vais.feature.core.ui.DateUtil
 import ru.vais.feature.favorite.ui.R
-import java.text.SimpleDateFormat
 
 class FavoriteAdapter(private val clickListener: ClickListener) :
-    RecyclerView.Adapter<ViewHolder>() {
-    private val listItem = mutableListOf<BaseItem>()
+    ListAdapter<BaseItem, ViewHolder>(FavoriteVacancyDiffCallback()) {
+
+    //private val listItem = mutableListOf<BaseItem>()
 
     inner class VacancyViewHolder(itemView: View) : ViewHolder(itemView) {
         private val lookingNumberView =
@@ -88,12 +87,8 @@ class FavoriteAdapter(private val clickListener: ClickListener) :
         }
     }
 
-    override fun getItemCount(): Int {
-        return listItem.size
-    }
-
     override fun getItemViewType(position: Int): Int {
-        return when (listItem[position]) {
+        return when (getItem(position)) {
             is BaseItem.VacancyUi -> VIEW_TYPE_VACANCY
             is BaseItem.HeaderUi -> VIEW_TYPE_HEADER
         }
@@ -102,19 +97,13 @@ class FavoriteAdapter(private val clickListener: ClickListener) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
             is VacancyViewHolder -> {
-                holder.bind(listItem[position] as BaseItem.VacancyUi)
+                holder.bind(getItem(position) as BaseItem.VacancyUi)
             }
 
             is HeaderViewHolder -> {
-                holder.bind(listItem[position] as BaseItem.HeaderUi)
+                holder.bind(getItem(position) as BaseItem.HeaderUi)
             }
         }
-    }
-
-    fun update(list: List<BaseItem>) {
-        listItem.clear()
-        listItem.addAll(list)
-        notifyDataSetChanged()
     }
 
     interface ClickListener {

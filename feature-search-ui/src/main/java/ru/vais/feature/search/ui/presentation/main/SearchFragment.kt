@@ -14,11 +14,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
-import ru.vais.feature.search.ui.presentation.adapter.SearchAdapter
+import ru.vais.feature.search.ui.presentation.adapter.search.SearchAdapter
 import ru.vais.core.di.BaseComponentHolder
 import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.databinding.FragmentSearchBinding
-import ru.vais.feature.search.ui.presentation.adapter.BaseItem
+import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 
 
 class SearchFragment : Fragment() {
@@ -72,7 +72,7 @@ class SearchFragment : Fragment() {
                         is SearchViewModel.StateScreen.Content -> {
                             binding.progressbar.isVisible = false
                             binding.buttonRepeatLoad.isVisible = false
-                            searchAdapter.update(it.baseItemList)
+                            searchAdapter.submitList(it.baseItemList)
                         }
 
                         is SearchViewModel.StateScreen.Error -> {

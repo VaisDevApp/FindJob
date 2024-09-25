@@ -9,9 +9,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import ru.vais.feature.search.ui.R
-import ru.vais.feature.search.ui.presentation.adapter.BaseItem
-import ru.vais.feature.search.ui.presentation.adapter.OfferItem
+import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 import ru.vais.feature.search.ui.presentation.main.mapper.SearchMapper
 import ru.vais.feature.vacancy.domain.GetAllVacancyPayloadUseCase
 import ru.vais.feature.vacancy.domain.UpdateFavoriteVacancyUseCase

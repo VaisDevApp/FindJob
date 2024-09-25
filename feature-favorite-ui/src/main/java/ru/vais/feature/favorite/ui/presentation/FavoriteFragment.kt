@@ -48,7 +48,7 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.stateScreenFlow.collect {
-                    favoriteAdapter.update(it)
+                    favoriteAdapter.submitList(it)
                 }
             }
         }
