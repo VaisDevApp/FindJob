@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.presentation.adapter.offer.OfferAdapter
-import ru.vais.feature.search.ui.presentation.main.SearchFragment
 
 class SearchAdapter(private val clickListener: OnClickListener) :
     ListAdapter<BaseItem, ViewHolder>(BaseItemDiffCallback()) {
@@ -83,7 +82,7 @@ class SearchAdapter(private val clickListener: OnClickListener) :
 
         fun bind(button: BaseItem.ButtonOnClickItemUi) {
             buttonAddVacancyView.setOnClickListener {
-                clickListener.onClick()
+                clickListener.onClickAllVacancy()
             }
             buttonAddVacancyView.text = itemView.context.getString(
                 R.string.still, itemView.resources.getQuantityString(
@@ -187,7 +186,7 @@ class SearchAdapter(private val clickListener: OnClickListener) :
     }
 
     interface OnClickListener {
-        fun onClick()
+        fun onClickAllVacancy()
 
         fun onClickChangeFavorite(vacancy: BaseItem.VacancyUi)
 

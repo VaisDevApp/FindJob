@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchAdapter = SearchAdapter(object : SearchAdapter.OnClickListener {
-        override fun onClick() {
+        override fun onClickAllVacancy() {
             findNavController().navigate(R.id.to_search_full)
         }
 

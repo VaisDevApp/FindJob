@@ -29,7 +29,7 @@ class SearchFullFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchFullBinding
     private val searchAdapter = SearchAdapter(object : SearchAdapter.OnClickListener {
-        override fun onClick() {
+        override fun onClickAllVacancy() {
             //stub
         }
 
@@ -39,6 +39,10 @@ class SearchFullFragment : Fragment() {
 
         override fun onClickToVacancyCard(vacancy: BaseItem.VacancyUi) {
             findNavController().navigate(R.id.to_vacancy_detail)
+        }
+
+        override fun onClickToOffer(link: String) {
+            //stub
         }
     })
 
