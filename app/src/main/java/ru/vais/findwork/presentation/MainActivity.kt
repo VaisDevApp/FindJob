@@ -1,4 +1,4 @@
-package ru.vais.findwork
+package ru.vais.findwork.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.coroutines.launch
 import ru.vais.core.di.BaseComponentHolder
+import ru.vais.findwork.R
 import ru.vais.findwork.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":data-vacancy"))
     implementation(project(":core-di"))
     implementation(project(":core-ui"))
+    implementation(project(":feature-other-ui"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

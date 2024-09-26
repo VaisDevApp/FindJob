@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.vais.core.di.ViewModelKey
-import ru.vais.findwork.MainViewModel
+import ru.vais.findwork.presentation.MainViewModel
 
 @Module
 interface AppModule {

@@ -1,4 +1,4 @@
-package ru.vais.findwork
+package ru.vais.findwork.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
