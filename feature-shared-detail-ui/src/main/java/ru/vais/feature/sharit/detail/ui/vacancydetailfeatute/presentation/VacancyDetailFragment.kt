@@ -1,11 +1,11 @@
-package ru.vais.feature.other.ui.vacancydetailfeatute
+package ru.vais.feature.sharit.detail.ui.vacancydetailfeatute.presentation
 
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import ru.vais.feature.other.ui.R
+import ru.vais.feature.sharit.detail.ui.R
 
 
 class VacancyDetailFragment : Fragment(R.layout.fragment_vacancy_detail) {

@@ -40,7 +40,7 @@ dependencies {
     implementation(project(":core-di"))
     implementation(project(":core-ui"))
     implementation(project(":data-vacancy"))
-    implementation(project(":feature-other-ui"))
+    implementation(project(":feature-shared-detail-ui"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,4 +51,5 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
 }

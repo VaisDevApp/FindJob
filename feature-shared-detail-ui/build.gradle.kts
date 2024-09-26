@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
 }
 
 android {
-    namespace = "ru.vais.feature.search.ui"
+    namespace = "ru.vais.feature.sharit.detail.ui"
     compileSdk = 34
 
     defaultConfig {
@@ -31,16 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
-        viewBinding = true
-    }
 }
 
 dependencies {
-    implementation(project(":data-vacancy"))
-    implementation(project(":core-di"))
-    implementation(project(":core-ui"))
-    implementation(project(":feature-shared-detail-ui"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -49,6 +42,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
+    implementation(libs.androidx.navigation.runtime.ktx)
+
+
+
 }

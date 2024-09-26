@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/vacancy_details"
-        android:name="ru.vais.feature.other.ui.vacancydetailfeatute.VacancyDetailFragment"
+        android:name="ru.vais.feature.sharit.detail.ui.vacancydetailfeatute.presentation.VacancyDetailFragment"
         android:label="Vacancy detail"
         tools:layout="@layout/fragment_search" />
 
