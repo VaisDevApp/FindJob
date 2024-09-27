@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorite_fragment">Favorite fragment</string>
+    <string name="fragment_message">Fragment message</string>
+    <string name="fragment_profile">Fragment profile</string>
+    <string name="fragment_response">Fragment response</string>
+    <string name="fragment_search">Fragment search</string>
+
+</resources>
