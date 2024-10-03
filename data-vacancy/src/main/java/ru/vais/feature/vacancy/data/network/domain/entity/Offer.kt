@@ -1,4 +1,4 @@
-package ru.vais.feature.vacancy.domain.entity
+package ru.vais.feature.vacancy.data.network.domain.entity
 
 import androidx.room.ColumnInfo
 

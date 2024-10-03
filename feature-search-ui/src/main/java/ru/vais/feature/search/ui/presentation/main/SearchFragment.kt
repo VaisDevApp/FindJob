@@ -21,6 +21,7 @@ import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.databinding.FragmentSearchBinding
 import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 import ru.vais.feature.search.ui.presentation.adapter.search.SearchAdapter
+import ru.vais.feature.sharit.detail.ui.vacancydetailfeatute.presentation.VacancyDetailFragment
 
 
 class SearchFragment : Fragment() {
@@ -42,7 +43,10 @@ class SearchFragment : Fragment() {
         }
 
         override fun onClickToVacancyCard(vacancy: BaseItem.VacancyUi) {
-            findNavController().navigate(R.id.to_vacancy_detail)
+            val args = Bundle().apply {
+                putString(VacancyDetailFragment.KEY_ID_VACANCY, vacancy.id)
+            }
+            findNavController().navigate(R.id.to_vacancy_detail, args)
         }
 
         override fun onClickToOffer(link: String) {

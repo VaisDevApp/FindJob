@@ -15,10 +15,10 @@ import ru.vais.feature.vacancy.data.database.entity.VacancyDb
 import ru.vais.feature.vacancy.data.network.ServerApi
 import ru.vais.feature.vacancy.data.network.entity.OffersApi
 import ru.vais.feature.vacancy.data.network.entity.VacancyApi
-import ru.vais.feature.vacancy.domain.VacancyPayloadRepository
-import ru.vais.feature.vacancy.domain.entity.Offer
-import ru.vais.feature.vacancy.domain.entity.Vacancy
-import ru.vais.feature.vacancy.domain.entity.VacancyPayload
+import ru.vais.feature.vacancy.data.network.domain.VacancyPayloadRepository
+import ru.vais.feature.vacancy.data.network.domain.entity.Offer
+import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.network.domain.entity.VacancyPayload
 import javax.inject.Inject
 
 
@@ -86,11 +86,24 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
             lookingNumber = vacancyApi.lookingNumber,
             isFavorite = vacancyApi.isFavorite,
             title = vacancyApi.title,
-            town = vacancyApi.address?.town,
+            town = "${vacancyApi.address?.town}, ${vacancyApi.address?.street}, ${vacancyApi.address?.house}",
             company = vacancyApi.company,
             previewText = vacancyApi.experience?.previewText,
-            publishedDate = vacancyApi.publishedDate
+            publishedDate = vacancyApi.publishedDate,
+            salary = vacancyApi.salary.full,
+            schedules = vacancyApi.schedules.get(0) + ", " + vacancyApi.schedules.get(1),
+            appliedNumber = vacancyApi.appliedNumber,
+            description = vacancyApi.description,
+            responsibilities = vacancyApi.responsibilities,
+            questions = getQuestionsString(vacancyApi.questions)
         )
+    }
+    private fun getQuestionsString(list: List<String>): String {
+        var newItem = ""
+        for(question in list){
+            newItem = "$newItem#$question"
+        }
+        return newItem.substring(1)
     }
 
     private fun mapVacancyDbToVacancy(vacancyDb: VacancyDb): Vacancy {
@@ -102,7 +115,13 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
             town = vacancyDb.town,
             company = vacancyDb.company,
             previewText = vacancyDb.previewText,
-            publishedDate = vacancyDb.publishedDate
+            publishedDate = vacancyDb.publishedDate,
+            salary = vacancyDb.salary,
+            schedules = vacancyDb.schedules,
+            appliedNumber = vacancyDb.appliedNumber,
+            description = vacancyDb.description,
+            responsibilities = vacancyDb.responsibilities,
+            questions = vacancyDb.questions.split("#")
         )
     }
 
@@ -128,6 +147,13 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
     override suspend fun updateFavoriteVacancy(id: String, isFavorite: Boolean) {
         withContext(Dispatchers.IO) {
             dataBase.getVacancyDbDao().updateFavorite(id, isFavorite)
+        }
+    }
+
+    override suspend fun getVacancyById(id: String): Vacancy {
+        return withContext(Dispatchers.IO){
+            val vacancyDb = dataBase.getVacancyDbDao().getVacancyById(id)
+            mapVacancyDbToVacancy(vacancyDb)
         }
     }
 

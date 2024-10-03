@@ -15,6 +15,9 @@ interface VacancyDao {
     @Query("SELECT*FROM Vacancy")
     fun getAllVacancyAsFlow(): Flow<List<VacancyDb>>
 
+    @Query("SELECT*FROM Vacancy WHERE id = :id")
+    fun getVacancyById(id: String): VacancyDb
+
     @Insert
     fun insert(vacancyDb: VacancyDb)
 

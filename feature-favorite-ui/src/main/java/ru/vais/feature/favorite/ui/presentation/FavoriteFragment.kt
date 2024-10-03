@@ -17,6 +17,7 @@ import ru.vais.feature.favorite.ui.R
 import ru.vais.feature.favorite.ui.presentation.adapter.BaseItem
 import ru.vais.feature.favorite.ui.presentation.adapter.FavoriteAdapter
 import ru.vais.feature.favorite.ui.databinding.FragmentFavoriteBinding
+import ru.vais.feature.sharit.detail.ui.vacancydetailfeatute.presentation.VacancyDetailFragment
 
 class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
 
@@ -61,6 +62,9 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.ClickListener {
     }
 
     override fun onClickToDetail(vacancy: BaseItem.VacancyUi) {
-        findNavController().navigate(R.id.to_vacancy_detail_from_favorite)
+        val args = Bundle().apply {
+            putString(VacancyDetailFragment.KEY_ID_VACANCY, vacancy.id)
+        }
+        findNavController().navigate(R.id.to_vacancy_detail_from_favorite, args)
     }
 }

@@ -18,5 +18,17 @@ data class VacancyApi(
     @SerializedName("publishedDate")
     val publishedDate: String,
     @SerializedName("isFavorite")
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    @SerializedName("salary")
+    val salary: SalaryIpi,
+    @SerializedName("schedules")
+    val schedules: List<String>,
+    @SerializedName("appliedNumber")
+    val appliedNumber: Int,
+    @SerializedName("description")
+    val description: String?,
+    @SerializedName("responsibilities")
+    val responsibilities: String,
+    @SerializedName("questions")
+    val questions: List<String>
 )

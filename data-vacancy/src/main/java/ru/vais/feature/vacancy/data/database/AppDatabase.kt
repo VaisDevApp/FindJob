@@ -7,7 +7,7 @@ import ru.vais.feature.vacancy.data.database.dao.VacancyDao
 import ru.vais.feature.vacancy.data.database.entity.OfferDb
 import ru.vais.feature.vacancy.data.database.entity.VacancyDb
 
-@Database(entities = [VacancyDb::class, OfferDb::class], version = 4)
+@Database(entities = [VacancyDb::class, OfferDb::class], version = 8)
 abstract class AppDatabase() : RoomDatabase() {
 
     abstract fun getVacancyDbDao(): VacancyDao

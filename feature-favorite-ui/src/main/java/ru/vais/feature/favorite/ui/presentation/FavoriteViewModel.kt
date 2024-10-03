@@ -1,5 +1,6 @@
 package ru.vais.feature.favorite.ui.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -12,8 +13,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.vais.feature.favorite.ui.presentation.adapter.BaseItem
 import ru.vais.feature.favorite.ui.presentation.mapper.FavoriteMapper
-import ru.vais.feature.vacancy.domain.GetFavoriteVacancyUseCase
-import ru.vais.feature.vacancy.domain.UpdateFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.network.domain.GetFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.network.domain.UpdateFavoriteVacancyUseCase
 import javax.inject.Inject
 
 
@@ -42,9 +43,14 @@ class FavoriteViewModel @Inject constructor(
                 .map { FavoriteMapper.map(it) }
                 .flowOn(Dispatchers.IO)
                 .catch {
+                    Log.e(TAG, "Load data Error", it)
                     _stateScreenFlow.emit(emptyList())
                 }
                 .collect { _stateScreenFlow.emit(it) }
         }
+    }
+
+    companion object {
+        private const val TAG = "FavoriteViewModel"
     }
 }

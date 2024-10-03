@@ -1,7 +1,7 @@
 package ru.vais.feature.search.ui.presentation.full.mapper
 
 import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
-import ru.vais.feature.vacancy.domain.entity.VacancyPayload
+import ru.vais.feature.vacancy.data.network.domain.entity.VacancyPayload
 
 object SearchFullMapper {
     fun map(vacancyPayload: VacancyPayload):List<BaseItem>{

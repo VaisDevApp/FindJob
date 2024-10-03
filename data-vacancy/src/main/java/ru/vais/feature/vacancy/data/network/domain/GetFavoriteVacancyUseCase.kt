@@ -1,8 +1,8 @@
-package ru.vais.feature.vacancy.domain
+package ru.vais.feature.vacancy.data.network.domain
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import ru.vais.feature.vacancy.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
 import javax.inject.Inject
 
 class GetFavoriteVacancyUseCase @Inject constructor(private val vacancyPayloadRepository: VacancyPayloadRepository) {

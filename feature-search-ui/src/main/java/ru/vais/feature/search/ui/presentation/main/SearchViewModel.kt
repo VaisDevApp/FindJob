@@ -1,5 +1,6 @@
 package ru.vais.feature.search.ui.presentation.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -11,8 +12,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 import ru.vais.feature.search.ui.presentation.main.mapper.SearchMapper
-import ru.vais.feature.vacancy.domain.GetAllVacancyPayloadUseCase
-import ru.vais.feature.vacancy.domain.UpdateFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.network.domain.GetAllVacancyPayloadUseCase
+import ru.vais.feature.vacancy.data.network.domain.UpdateFavoriteVacancyUseCase
 import javax.inject.Inject
 
 
@@ -40,6 +41,7 @@ class SearchViewModel @Inject constructor(
                 .map { vacancyPayload -> SearchMapper.map(vacancyPayload) }
                 .flowOn(Dispatchers.IO)
                 .catch {
+                    Log.e(TAG, "Load data with error", it )
                     _stateScreenFlow.emit(StateScreen.Error)
                 }
                 .collect {
@@ -52,5 +54,8 @@ class SearchViewModel @Inject constructor(
         data object Error : StateScreen()
         data object Progress : StateScreen()
         class Content(val baseItemList: List<BaseItem>) : StateScreen()
+    }
+    companion object{
+        private const val TAG = "SearchViewModel"
     }
 }

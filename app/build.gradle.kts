@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":feature-search-ui"))
     implementation(project(":feature-other-ui"))
     implementation(project(":data-vacancy"))
+    implementation(project(":feature-shared-detail-ui"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
