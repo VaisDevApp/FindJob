@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 import ru.vais.feature.search.ui.presentation.full.mapper.SearchFullMapper
-import ru.vais.feature.vacancy.data.network.domain.GetAllVacancyPayloadUseCase
-import ru.vais.feature.vacancy.data.network.domain.UpdateFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.domain.GetAllVacancyPayloadUseCase
+import ru.vais.feature.vacancy.data.domain.UpdateFavoriteVacancyUseCase
 import javax.inject.Inject
 
 class SearchFullViewModel @Inject constructor(

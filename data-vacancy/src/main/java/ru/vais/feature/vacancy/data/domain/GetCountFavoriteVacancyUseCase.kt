@@ -1,4 +1,4 @@
-package ru.vais.feature.vacancy.data.network.domain
+package ru.vais.feature.vacancy.data.domain
 
 import javax.inject.Inject
 

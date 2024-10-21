@@ -4,7 +4,7 @@ import ru.vais.feature.core.ui.DateUtil
 import ru.vais.feature.search.ui.R
 import ru.vais.feature.search.ui.presentation.adapter.search.BaseItem
 import ru.vais.feature.search.ui.presentation.adapter.offer.OfferItem
-import ru.vais.feature.vacancy.data.network.domain.entity.VacancyPayload
+import ru.vais.feature.vacancy.data.domain.entity.VacancyPayload
 
 object SearchMapper {
     fun map(vacancyPayload: VacancyPayload): List<BaseItem> {

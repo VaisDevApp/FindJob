@@ -10,15 +10,16 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import ru.vais.feature.vacancy.data.database.AppDatabase
+import ru.vais.feature.vacancy.data.database.DbUtils.convertQuestionListToString
 import ru.vais.feature.vacancy.data.database.entity.OfferDb
 import ru.vais.feature.vacancy.data.database.entity.VacancyDb
 import ru.vais.feature.vacancy.data.network.ServerApi
 import ru.vais.feature.vacancy.data.network.entity.OffersApi
 import ru.vais.feature.vacancy.data.network.entity.VacancyApi
-import ru.vais.feature.vacancy.data.network.domain.VacancyPayloadRepository
-import ru.vais.feature.vacancy.data.network.domain.entity.Offer
-import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
-import ru.vais.feature.vacancy.data.network.domain.entity.VacancyPayload
+import ru.vais.feature.vacancy.data.domain.VacancyPayloadRepository
+import ru.vais.feature.vacancy.data.domain.entity.Offer
+import ru.vais.feature.vacancy.data.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.domain.entity.VacancyPayload
 import javax.inject.Inject
 
 
@@ -29,6 +30,7 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
 
     override fun getVacancyPayload(): Flow<VacancyPayload> {
         return flow {
+
             SYNC_MUTEX.withLock {
                 if (isNeedToLoadFromServer) {
                     syncData()
@@ -95,16 +97,11 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
             appliedNumber = vacancyApi.appliedNumber,
             description = vacancyApi.description,
             responsibilities = vacancyApi.responsibilities,
-            questions = getQuestionsString(vacancyApi.questions)
+            questions = convertQuestionListToString(vacancyApi.questions)
         )
     }
-    private fun getQuestionsString(list: List<String>): String {
-        var newItem = ""
-        for(question in list){
-            newItem = "$newItem#$question"
-        }
-        return newItem.substring(1)
-    }
+
+
 
     private fun mapVacancyDbToVacancy(vacancyDb: VacancyDb): Vacancy {
         return Vacancy(
@@ -145,13 +142,15 @@ class VacancyPayloadRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateFavoriteVacancy(id: String, isFavorite: Boolean) {
-        withContext(Dispatchers.IO) {
-            dataBase.getVacancyDbDao().updateFavorite(id, isFavorite)
+        SYNC_MUTEX.withLock {
+            withContext(Dispatchers.IO) {
+                dataBase.getVacancyDbDao().updateFavorite(id, isFavorite)
+            }
         }
     }
 
     override suspend fun getVacancyById(id: String): Vacancy {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             val vacancyDb = dataBase.getVacancyDbDao().getVacancyById(id)
             mapVacancyDbToVacancy(vacancyDb)
         }

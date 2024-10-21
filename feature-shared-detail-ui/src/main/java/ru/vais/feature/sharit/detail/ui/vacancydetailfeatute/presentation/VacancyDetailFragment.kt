@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import ru.vais.core.di.BaseComponentHolder
 import ru.vais.feature.sharit.detail.ui.R
 import ru.vais.feature.sharit.detail.ui.databinding.FragmentVacancyDetailBinding
-import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.domain.entity.Vacancy
 
 
 class VacancyDetailFragment : Fragment(R.layout.fragment_vacancy_detail) {

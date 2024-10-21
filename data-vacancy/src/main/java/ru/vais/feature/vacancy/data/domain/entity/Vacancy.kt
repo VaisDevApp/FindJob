@@ -1,4 +1,4 @@
-package ru.vais.feature.vacancy.data.network.domain.entity
+package ru.vais.feature.vacancy.data.domain.entity
 
 class Vacancy(
     val id: String,

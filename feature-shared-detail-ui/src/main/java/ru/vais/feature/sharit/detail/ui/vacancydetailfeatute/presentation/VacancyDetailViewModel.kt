@@ -9,9 +9,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.vais.feature.core.ui.DateUtil
 import ru.vais.feature.vacancy.data.database.DataBaseFactory
-import ru.vais.feature.vacancy.data.network.domain.GetVacancyByIdUseCase
-import ru.vais.feature.vacancy.data.network.domain.UpdateFavoriteVacancyUseCase
-import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.domain.GetVacancyByIdUseCase
+import ru.vais.feature.vacancy.data.domain.UpdateFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.domain.entity.Vacancy
 import javax.inject.Inject
 
 class VacancyDetailViewModel @Inject constructor(

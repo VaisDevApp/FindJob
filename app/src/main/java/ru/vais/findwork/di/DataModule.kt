@@ -9,7 +9,7 @@ import ru.vais.feature.vacancy.data.database.AppDatabase
 import ru.vais.feature.vacancy.data.database.DataBaseFactory
 import ru.vais.feature.vacancy.data.network.RetrofitApiFactory
 import ru.vais.feature.vacancy.data.network.ServerApi
-import ru.vais.feature.vacancy.data.network.domain.VacancyPayloadRepository
+import ru.vais.feature.vacancy.data.domain.VacancyPayloadRepository
 import javax.inject.Singleton
 
 @Module

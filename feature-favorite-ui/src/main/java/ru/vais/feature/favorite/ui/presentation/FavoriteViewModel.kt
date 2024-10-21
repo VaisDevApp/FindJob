@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.vais.feature.favorite.ui.presentation.adapter.BaseItem
 import ru.vais.feature.favorite.ui.presentation.mapper.FavoriteMapper
-import ru.vais.feature.vacancy.data.network.domain.GetFavoriteVacancyUseCase
-import ru.vais.feature.vacancy.data.network.domain.UpdateFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.domain.GetFavoriteVacancyUseCase
+import ru.vais.feature.vacancy.data.domain.UpdateFavoriteVacancyUseCase
 import javax.inject.Inject
 
 

@@ -1,6 +1,6 @@
-package ru.vais.feature.vacancy.data.network.domain
+package ru.vais.feature.vacancy.data.domain
 
-import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.domain.entity.Vacancy
 import javax.inject.Inject
 
 class GetVacancyByIdUseCase @Inject constructor(private val vacancyPayloadRepository: VacancyPayloadRepository) {

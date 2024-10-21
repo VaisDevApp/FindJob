@@ -2,7 +2,7 @@ package ru.vais.feature.favorite.ui.presentation.mapper
 
 import ru.vais.feature.core.ui.DateUtil
 import ru.vais.feature.favorite.ui.presentation.adapter.BaseItem
-import ru.vais.feature.vacancy.data.network.domain.entity.Vacancy
+import ru.vais.feature.vacancy.data.domain.entity.Vacancy
 
 object FavoriteMapper {
     fun map(vacancyList: List<Vacancy>):List<BaseItem> {
